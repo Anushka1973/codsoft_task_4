@@ -12,7 +12,7 @@ rock_img=ImageTk.PhotoImage(Image.open("rock.png"))
 paper_img=ImageTk.PhotoImage(Image.open("paper.png"))
 sci_img=ImageTk.PhotoImage(Image.open("scissors.png"))
 rock_img_comp=ImageTk.PhotoImage(Image.open("rock_c.png"))
-paper_img_comp=ImageTk.PhotoImage(Image.open("paper_c.png"))
+paper_img_comp=ImageTk.PhotoImage(Image.open("paper.png"))
 sci_img_comp=ImageTk.PhotoImage(Image.open("sci_c.png"))
 
 #inserting images
@@ -64,9 +64,11 @@ def check(player,computer):
     elif player == "rock":
         if computer == "paper":
             updatemsg("You Loose")
+            updatecompscore()
         else:
             updatemsg("You Win")
             updateuserscore()
+            
     elif player == "paper":
         if computer == "scissor":
             updatemsg("You Loose")
@@ -74,6 +76,7 @@ def check(player,computer):
         else:
             updatemsg("You Win")
             updateuserscore()
+            
     elif player=="scissor":
         if computer=="rock":
             updatemsg("You Loose")
@@ -81,12 +84,14 @@ def check(player,computer):
         else:
             updatemsg("You Win!")
             updateuserscore()
+    else:
+        pass
   
         
     
 #update choice
 
-choices=["ROCK","PAPER","SCISSOR"]
+choices=["rock","paper","scissor"]
 def updatechoices(x):
 #for computers
     compchoice = choices[randint(0,2)]
@@ -99,9 +104,9 @@ def updatechoices(x):
 
 
 #for user
-    if x=="ROCK":
+    if x=="rock":
         user_label.configure(image=rock_img)
-    elif(x=="PAPER"):
+    elif(x=="paper"):
         user_label.configure(image=paper_img)
     else:
         user_label.configure(image=sci_img)
@@ -110,9 +115,12 @@ def updatechoices(x):
     
 #buttons
 
-rock=Button(root,width=20,height=2,text="ROCK",bg="#FF3E40",fg="white",command= lambda:updatechoices("ROCK"))
-paper=Button(root,width=20,height=2,text="PAPER",bg="#FAD02E",fg="white",command= lambda:updatechoices("PAPER"))
-sci=Button(root,width=20,height=2,text="SCISSORS",bg="#0ABDE3",fg="white",command= lambda:updatechoices("SCISSORS"))
+
+
+
+rock=Button(root,width=20,height=2,text="ROCK",bg="#FF3E40",fg="white",command= lambda:updatechoices("rock"))
+paper=Button(root,width=20,height=2,text="PAPER",bg="#FAD02E",fg="white",command= lambda:updatechoices("paper"))
+sci=Button(root,width=20,height=2,text="SCISSORS",bg="#0ABDE3",fg="white",command= lambda:updatechoices("scissor"))
 rock.grid(row=2,column=1)
 paper.grid(row=2,column=2)
 sci.grid(row=2,column=3)
